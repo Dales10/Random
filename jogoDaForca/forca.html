@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Forca</title>
+    <style>
+        @charset "UTF-8";
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #333;
+        }
+
+        .forca {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 2em);
+            width: 300px;
+            height: 300px;
+            border-left: 5px solid #000;
+            border-bottom: 5px solid #000;
+        }
+        
+        .forca::before {
+            display: flex;
+            content: "";
+            background-color: #000;
+            width: 150px;
+            height: 5px;
+        }
+
+        .forca::after {
+            display: flex;
+            content: "";
+            background-color: #000;
+            width: 120px;
+            height: 5px;
+            transform: translate(88px , 55px) rotate(90deg);
+        }
+
+        .haste {
+            position: absolute;
+            width: 100px;
+            height: 5px;
+            background-color: #000;
+            transform: rotate(315deg);
+            top: 12%;
+            left: -6%;
+
+        }
+
+        .corpo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .cabeca {
+            display: none;
+            width: 50px;
+            height: 50px;
+            border: 2px solid red;
+            border-radius: 50%;
+        }
+
+        .tronco {
+            display: none;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 60px;
+            width: 2px;
+            background-color: red;
+        }
+
+        .braco-direito {
+            display: none;
+            position: absolute;
+            right: 20%;
+            top: 90%;
+            background-color: red;
+            height: 40px;
+            width: 2px;
+            transform: rotate(320deg);
+        }
+
+        .braco-esquerdo {
+            display: none;
+            position: absolute;
+            left: 20%;
+            top: 90%;
+            background-color: red;
+            height: 40px;
+            width: 2px;
+            transform: rotate(40deg);
+        }
+
+        .perna-direita {
+            display: none;
+            position: absolute;
+            top: 210%;
+            left: 22%;
+            background-color: red;
+            height: 40px;
+            width: 2px;
+            transform: rotate(40deg);
+        }
+
+        .perna-esquerda {
+            display: none;
+            position: absolute;
+            top: 210%;
+            right: 22%;
+            background-color: red;
+            height: 40px;
+            width: 2px;
+            transform: rotate(320deg);
+        }
+
+        .palavra {
+            position: absolute;
+            display: flex;
+            top: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .letra {
+            text-align: center;
+            font-size: 200%;
+            width: 40px;
+            height: 40px;
+            border-bottom: 2px solid #000;
+        }
+
+        .letra:not(:first-child) {
+            margin-left: 15px;
+        }
+
+        .sugestoes {
+            transform: translateY(28em);
+        }
+
+        input {
+            border: 1px solid #fff;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            text-align: center;
+            outline: none;
+            padding: 10px;
+            border-radius: 10px;
+            color: #fff;
+            background-color: #000;
+        }
+
+        #avisos {
+            color: #fff;
+            font-size: 120%;
+            transform: translateY(2.5em);
+            text-align: center;
+        }
+
+
+        .ganhou {
+            display: none;
+            background-color: rgba(0, 0, 0, .6);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .popup {
+            border-radius: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-image:linear-gradient(to right top, #0066ff, #ae3fde, #ea00a9, #ff006b, #ff002b);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            padding: 1em;
+            width: 20em;
+            height: 10em;
+            text-align: center;
+            font-size: 120%;
+            font-weight: bolder;
+        }
+
+        h2 {
+            margin-top: .5em;
+            margin-bottom: 1em;
+        }
+
+        .venceu {
+            z-index: 1;
+            background-image: url(d3a62e8bd0acefa07a28687065acc1d8.gif);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .perdeu {
+            z-index: 1;
+            background-image: url(fire-51.gif);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="forca">
+        <div class="haste"></div>
+        <div class="corpo">
+            <div class="cabeca"></div>
+            <div class="tronco"></div>
+            <div class="braco-direito"></div>
+            <div class="braco-esquerdo"></div>
+            <div class="perna-direita"></div>
+            <div class="perna-esquerda"></div>
+        </div>
+
+        <div class="palavra"></div>
+    </div>
+
+    <div class="sugestoes">
+        <div class="label-floating">
+            <input type="text" id="sugestao" placeholder="Sugestão">
+        </div>
+
+        <div id="avisos"></div>
+    </div>
+
+    <div class="ganhou">
+        <div class="popup"></div>
+    </div>
+
+    <script>
+        var palavra, ocorrenciasTotais, sugestao, letra, caracteres, sugestoesFeitas, totalDeLetras, count;
+        const palavras = [
+            "gato", "cachorro", "vaca", "papagaio",
+            "mosquito", "zebra", "onça", "lula",
+            "baleia", "rato", "tigre", "sapo", "mariposa"
+        ];
+        const partesDoCorpo = ["cabeca", "tronco", "braco-esquerdo", "braco-direito", "perna-esquerda", "perna-direita"];
+
+        sugestao = document.querySelector("#sugestao");
+        sugestao.addEventListener("keyup", quardarValor);
+        document.querySelector(".ganhou").addEventListener("click", () => {
+            document.querySelector(".ganhou").style.display = "none";
+        });
+        iniciar()
+
+        function iniciar() {
+            document.querySelector("#sugestao").blur()
+            document.querySelector(".palavra").innerHTML = ""
+            sugestoesFeitas = [], totalDeLetras = [], count = 0;
+            palavra = palavras[palavraRandom(13, 1) - 1];
+            caracteres = palavra.split("");
+            for (let letras = 0; letras < caracteres.length; letras++) {
+                let letra = document.createElement("div");
+                letra.setAttribute("class", "letra");
+                letra.setAttribute("id", `letra${letras}`);
+                document.querySelector(".palavra").appendChild(letra);
+            };
+        };
+
+        function quardarValor() {
+            letra = sugestao.value.toLowerCase();
+            sugestao.value = "";
+            if (letra.split("").length > 1) {
+                document.querySelector("#avisos").innerHTML = "Digite apenas uma letra por vez";
+            } else {
+                var letraJaSugerida = sugestoesFeitas.includes(letra);
+                if (letraJaSugerida) {
+                    document.querySelector("#avisos").innerHTML = "Sugestão já feita";
+                } else {
+                    document.querySelector("#avisos").innerHTML = "";
+                    for (let loop = 0; loop < caracteres.length; loop++) {
+                        if (caracteres[loop] == letra) {
+                            if (loop === 0) {
+                                document.querySelector("#letra" + loop).innerHTML = letra.toUpperCase();
+                            } else {
+                                document.querySelector("#letra" + loop).innerHTML = letra;
+                            }
+                            totalDeLetras.push(loop);
+                        };
+                    };
+
+                    if (!caracteres.includes(letra)) {
+                        document.querySelector(`.${partesDoCorpo[count]}`).style.display = "block";
+                        count++;
+                        if (count == 6) {
+                            document.querySelector(".popup").innerHTML = "<h2 class=\"perdeu\">Quem sabe na próxima</h2> <p class=\"perdeu\">Não conseguiu adivinhar...";
+                            document.querySelector(".ganhou").style.display = "block";
+                            for (let loop = 0; loop < 6; loop++) {
+                                document.querySelector(`.${partesDoCorpo[loop]}`).style.display = "none"; 
+                            };
+                            iniciar();
+                        };
+                    };
+                };
+                sugestoesFeitas.push(letra);
+                sugestoesFeitas = [...new Set(sugestoesFeitas)];
+
+                if (totalDeLetras.length === caracteres.length) {
+                    document.querySelector(".popup").innerHTML = "<h2 class=\"venceu\">Parabéns</h2> <p class=\"venceu\">Você adivinhou a palavra!";
+                    document.querySelector(".ganhou").style.display = "block";
+                    for (let loop = 0; loop < 6; loop++) {
+                        document.querySelector(`.${partesDoCorpo[loop]}`).style.display = "none"; 
+                    };
+                    iniciar();
+                };
+            };
+        };
+
+        function palavraRandom(max, min) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        };
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+.border-animation, .border-animation-normal {
+    overflow: hidden;
+}
+
+.border-animation::before, .border-animation-normal::before {
+    content: "";
+    position: absolute;
+    width: 10em;
+    height: 130%;
+    background-image: linear-gradient(#00d2ff, #5f2c82);
+    filter: blur(10px);
+    animation: rotate 5s ease-in-out infinite alternate;
+}
+
+.border-animation-normal::before {
+    filter: none;
+    animation: rotate-normal 5s ease-in-out infinite alternate;
+}
+
+@keyframes rotate-normal {
+    from{ rotate: 0deg; }
+    to { rotate: 360deg; }
+}
+
+@keyframes rotate {
+    from{ rotate: 0deg; }
+    to { rotate: -360deg; }
+}
+
+.imagem {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    overflow: hidden;
+    width: calc(100% - .5em);
+    height: calc(100% - .5em);
+    border: 2px solid #1c1c1c;
+}
+
+.imagem img {
+    width: 100%;
+    height: 100%;
+    transition: .7s ease-in-out;
+    border: none;
+}
+
+.imagem img:hover {
+    scale: 1.1;
+}
+
+.imagem .content {
+    position: absolute;
+    cursor: pointer;
+    text-align: justify;
+    padding: 25px 15px;
+    padding-top: 50px;
+    border-end-end-radius: 10px;
+    border-end-start-radius: 10px;
+    background-color: #000;
+    bottom: -30%;
+    width: calc(100% + 5px);
+    transition: .5s ease-in-out;
+}
+
+.imagem:hover .content {
+    bottom: 0;
+}
+
+.border-animation-normal .content {
+    width: calc(100% - .5em);
+    height: calc(100% - .5em);
+    background-color: #1c1c1c;
+    z-index: 1;
+    border-radius: 20px;
+}
+
+.border-animation-normal .content blockquote {
+    margin-top: 210px;
+}
+
+.border-animation-normal .content blockquote::selection {
+    background-color: #9708CC;
+}
+
+.border-animation-normal .content p::selection {
+    color: #92FFC0;
+}
+
+.border-animation-normal .content p {
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.border-animation-normal .content img {
+    position: absolute;
+    width: 100%;
+    height: 40%;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efeitos</title>
+    <script src="https://kit.fontawesome.com/316cf3a84e.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="config.css">
+    <link rel="stylesheet" href="border-animation.css">
+    <link rel="stylesheet" href="border-shadow.css">
+    <link rel="stylesheet" href="gradient-animation.css">
+    <link rel="stylesheet" href="slider.css">
+    <link rel="stylesheet" href="floating.css">
+    <link rel="stylesheet" href="border-cometa.css">
+    <link rel="stylesheet" href="eci.css">
+</head>
+<body>
+    <header>
+        <h1>Exemplos de efeitos e mecânicas HTML, CSS e JavaScript</h1>
+    </header>
+
+    <section class="elements">
+        <div class="card border-animation">
+            <div class="imagem">
+                <img src="imgs/img1.jfif">
+                <div class="content">
+                    <p>Paisagem natural é um ambiente composto pelos elementos da natureza e que não sofreu intervenção humana, mantendo conservadas suas características típicas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-shadow">
+            <img src="imgs/bill-gates-empresario-co-fundador-da-microsoft-e-filantropo-scaled.jpg">
+            <blockquote>Escolho uma pessoa preguiçosa para desenvolver um trabalho árduo. Por causa da preguiça, ela vai descobrir um meio simples de resolver o problema.</blockquote>
+            <p>Bill Gates</p>
+        </div>
+
+        <div class="card gradient-animation">
+
+        </div>
+
+        <div class="card border-animation-normal">
+            <div class="content">
+                <img src="imgs/0414-A-perseverança-na-tribulação-600x300.jpg">
+                <blockquote>Tente uma, duas, três vezes e se possível tente a quarta, a quinta e quantas vezes for necessário. Só não desista nas primeiras tentativas, a persistência é amiga da conquista. Se você quer chegar aonde a maioria não chega, faça o que a maioria não faz.
+                </blockquote>
+                <p>Bill Gates</p>
+            </div>
+        </div>
+
+        <div class="card slider-card">
+            <div class="slider">
+                <div class="slide first"><img src="imgs/slider/black_forest_germany-Nature_Wallpapers_medium.jpg"></div>
+                <div class="slide"><img src="imgs/slider/green_tree_fantasy_landscape-Nature_Wallpapers_1366x768.jpg"></div>
+                <div class="slide"><img src="imgs/slider/mountain_grass-Nature_Scenery_Wallpaper_medium.jpg"></div>
+                <div class="slide"><img src="imgs/slider/road_summer-Beautiful_natural_scenery_Desktop_Wallpapers_1366x768.jpg"></div>
+                <div class="slide"><img src="imgs/slider/stone_corner-Scenery_HD_Wallpaper_1366x768.jpg"></div>
+            </div>
+
+            <div class="navegation">
+                <div class="btn" id="slide1"></div>
+                <div class="btn" id="slide2"></div>
+                <div class="btn" id="slide3"></div>
+                <div class="btn" id="slide4"></div>
+                <div class="btn" id="slide5"></div>
+            </div>
+        </div>
+
+        <div class="card floating">
+            <div class="loading"></div>
+        </div>
+
+        <div class="card border-cometa">
+            <div class="label floating-label-main1">
+                <input type="text" id="nome" maxlength="18" placeholder="Ex.: Dário Matias Sales" autocomplete="off">
+                <label for="nome">Nome</label>
+            </div>
+            <div class="label floating-label-main2">
+                <input type="password" id="senha" maxlength="18" placeholder="Senha" autocomplete="off">
+                <label for="senha">Senha</label>
+            </div>
+            <div class="label floating-label-main3">
+                <input type="number" id="idade" placeholder="Ex.: 17" autocomplete="off">
+                <label for="idade">Idade</label>
+            </div>
+            <div class="buttons">
+                <div id="reset">Limpar</div>
+                <div id="submit">Enviar</div>
+            </div>
+        </div>
+
+        <div class="card eci">
+            <img src="imgs/eci.png">
+            <div class="school">ECI Areial</div>
+            <div class="school-name">Francisco Apolinário da Silva</div>
+        </div>
+    </section>
+
+    <div id="returnTop"></div>
+
+    <div class="progress-bar"></div>
+
+    <footer>
+        <div class="developer">By Dário Matias</div>
+        <div class="redes-sociais">
+            <div class="instagram"><a href="https://www.instagram.com/dario_delta10/"><i class="fa-brands fa-instagram"></i></a></div>
+            <div class="twitter"><a href="https://twitter.com/Dales_Adelta"><i class="fa-brands fa-twitter"></i></a></div>
+            <div class="github"><a href="https://github.com/Dales10"><i class="fa-brands fa-github"></i></a></div>
+        </div>
+    </footer>
+
+    <script src="slider.js"></script>
+    <script src="mecanicas.js"></script>
+</body>
+</html>

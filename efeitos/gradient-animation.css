@@ -1,0 +1,10 @@
+.gradient-animation {
+    background-image: linear-gradient(to left, #00ff87, #e81cff);
+    background-size: 500% 100%;
+    animation: gradient 2s ease-in-out infinite alternate;
+}
+
+@keyframes gradient {
+    0% { background-position-x: 0; }
+    100% { background-position-x: 100%; }
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            background-color: #000;
+        }
+
+        .content {
+            min-height: 200px;
+            max-height: 520px;
+            min-width: 350px;
+            max-width: 900px;
+            border-radius: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            overflow: hidden;
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 5%;
+            left: 50%;
+            transform: translate(-50%);
+            display: flex;
+        }
+
+        .btn {
+            width: 15px;
+            height: 15px;
+            border: 2px solid #fff;
+            margin: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: .8s;
+        }
+
+        .btn:hover {
+            background-color: #fff;
+        }
+
+        .slides {
+            display: flex;
+            width: 500%;
+            height: 100%;
+        }
+
+        .slide {
+            width: 20%;
+            transition: 1.5s;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="slides">
+            <div class="slide first"><img src="images/img1.jpg"></div>
+            <div class="slide"><img src="images/img2.jpg"></div>
+            <div class="slide"><img src="images/img3.jpg"></div>
+            <div class="slide"><img src="images/img4.jpg"></div>
+        </div>
+
+        <div class="navigation">
+            <div class="btn" id="slide1"></div>
+            <div class="btn" id="slide2"></div>
+            <div class="btn" id="slide3"></div>
+            <div class="btn" id="slide4"></div>
+        </div>
+    </div>
+
+    <script>
+        var margin, anterior, count = 1, slideAtual = 0, slideAnterior = 1, posicaoAnterior = 1, tempo = 1000, segundo = 0;
+        window.addEventListener("load", load);
+
+        function load() {
+            document.querySelector("#slide1").addEventListener("click", () => trocar(1, true));
+            document.querySelector("#slide2").addEventListener("click", () => trocar(2, true));
+            document.querySelector("#slide3").addEventListener("click", () => trocar(3, true));
+            document.querySelector("#slide4").addEventListener("click", () => trocar(4, true));
+            document.querySelector("#slide1").style.backgroundColor = "#fff";
+        };
+
+        function trocar(posicao, trocaManual) {
+            if (trocaManual === true) {
+                count = posicao;
+                segundo = 0
+            };
+            if (posicao === 1) {
+                margin = 0;
+            } else if (posicao === 2) {
+                margin = -20;
+            } else if (posicao === 3) {
+                margin = -40;
+            } else {
+                margin = -60;
+            };
+            trocarCor(posicao);
+            document.querySelector(".first").style.marginLeft = `${margin}%`;
+            slideAnterior = posicao
+        };
+
+        function trocarCor(posicao) {
+            document.querySelector("#slide" + posicao).style.backgroundColor = "#fff";
+            document.querySelector("#slide" + posicaoAnterior).style.backgroundColor = "transparent";
+            posicaoAnterior = posicao;
+        };
+
+        function cronometro() {
+            count++;
+            if (count === 5) {
+                count = 1;
+            };
+            trocar(count, false);
+        }
+
+        setInterval(() => {
+            segundo += 1
+            if (segundo === 3) {
+                cronometro()
+                segundo = 0
+            }
+        }, tempo);
+    </script>
+</body>
+</html>

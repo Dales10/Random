@@ -1,0 +1,122 @@
+.eci {
+    position: relative;
+    overflow: hidden;
+}
+
+.eci::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: circle(200px at 90% 10%);
+    background-color: #007fff;
+    transition: .7s ease-in-out;
+}
+
+.eci:hover:before {
+    clip-path: circle(300px at 80% -20%);
+}
+
+.eci::after {
+    content: "ECI";
+    position: absolute;
+    top: 30%;
+    left: 3%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 12em;
+    font-weight: bolder;
+    font-style: italic;
+    color: rgba(255, 255, 255, .04);
+    pointer-events: none;
+}
+
+.eci img {
+    z-index: 1;
+    transform: translateY(3em);
+    transition: 1s ease-in-out;
+}
+
+.eci:hover img {
+    transform: translateY(-3em);
+}
+
+.eci .school {
+    position: absolute;
+    bottom: 0em;
+    cursor: pointer;
+    font-size: 2em;
+    font-style: oblique;
+    font-weight: bolder;
+    color: #0000CD;
+    transform: translateY(-2em);
+    opacity: 0;
+    transition: 1s ease-in-out;
+}
+
+.eci:hover .school {
+    bottom: 1.5em;
+    opacity: 1;
+}
+
+.eci .school::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 0%;
+    height: 3px;
+    background-image: linear-gradient(to left, #00ff00, #00bfff);
+    background-size: 500% 100%;
+    border-radius: 10px;
+    animation: backgroundColor 1s ease-in-out infinite alternate;
+    transition: .8s ease-in-out;
+}
+
+.eci .school:hover::before {
+    width: 100%;
+}
+
+.eci:hover .school {
+    transform: translateY(-2em);
+}
+
+.eci .school-name {
+    position: absolute;
+    bottom: 2em;
+    cursor: pointer;
+    font-size: 120%;
+    color: #9400D3;
+    opacity: 0;
+    transition: .9s ease-in-out;
+    transition-delay: 50ms;
+}
+
+.eci:hover .school-name {
+    opacity: 1;
+}
+
+.eci .school-name::before {
+    content: "";
+    position: absolute;
+    bottom: -12%;
+    width: 0%;
+    height: 3px;
+    background-image: linear-gradient(to left, #9900CC, #FF0066);
+    background-size: 500% 100%;
+    border-radius: 10px;
+    animation: backgroundColor 1s ease-in-out infinite alternate;
+    transition: .8s ease-in-out;
+}
+
+.eci .school-name:hover::before {
+    width: 100%;
+}
+.eci:hover .school-name {
+    bottom: 4.5em;
+}
+
+@keyframes backgroundColor {
+    from { background-position: 0% 50%; }
+    to { background-position: 55% 50%; }
+}

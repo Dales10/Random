@@ -1,0 +1,20 @@
+window.addEventListener("load", iniciar)
+var loop
+
+function iniciar() {
+    document.querySelector(".menu").addEventListener("click", comecar)
+}
+
+function comecar() {
+    document.querySelector("#menu-bar").classList.toggle("change")
+
+    if (loop == 1) {
+        document.querySelector("#opcoes").style = "left: -300px;"
+        loop = 0
+        document.querySelector("#main").style = "background: transparent;"
+    } else {
+        document.querySelector("#opcoes").style = "left: 0;"
+        loop = 1
+        document.querySelector("#main").style = "background: rgba(0, 0, 0, .5);"
+    }
+}

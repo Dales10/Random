@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider 1</title>
+    <style>
+        @charset "UTF-8";
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        div.slider {
+            width: 640px;
+            height: 370px;
+            background-color: red;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            transition: 2.5s;
+        }
+    </style>
+</head>
+<body>
+    <div class="slider teste"></div>
+
+    <script>
+        var tmp, loop = 1, images = [], maxImg, imgAtual = 0, tempo = 0
+
+        function iniciar() {
+            preCarregamento()
+            carregarImagem(0)
+            maxImg = images.length - 1
+            tmp = setInterval(() => troca(1), 3000)
+        }
+
+        function preCarregamento() {
+            var s = 1
+            for (var loop = 0; loop < 4; loop++) {
+                images[loop] = new Image()
+                images[loop].src = `./images/${s}.jpg`
+                s++
+            }
+        }
+
+        function carregarImagem(img) {
+            console.log(img);
+            console.log(images[img].src);
+            document.querySelector(".slider").style.backgroundImage = `url(${images[img].src})`
+        }
+
+        function troca(dir) {
+            imgAtual += dir
+            if (imgAtual > maxImg) {
+                imgAtual = 0
+            }
+            carregarImagem(imgAtual)
+        }
+
+        window.addEventListener("load", iniciar)
+    </script>
+</body>
+</html>

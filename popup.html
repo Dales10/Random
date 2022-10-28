@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        
+        @charset "UTF-8";
+
+        * {
+            box-sizing: border-box;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            background-color: crimson;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            padding: 6px 10px;
+        }
+
+        .popup-wrapper {
+            display: none;
+            background-color: rgba(0, 0, 0, .5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .popup {
+            transform: translateY(100%);
+            margin: auto;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            position: relative;
+        }
+
+        .popup a {
+            background-color: crimson;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 6px 10px;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <button id="button">Clique aqui</button>
+
+    <div class="popup-wrapper">
+        <div class="popup">
+            <div class="popup-close">x</div>
+
+            <div class="popup-content">
+                <h2>Pop-Up</h2>
+                <p>Exemplo de Pop-Up</p>
+                <a class="popup-link" href="#">Saiba mais</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener("load", iniciar)
+
+        function iniciar() {
+            var pop = document.querySelector(".popup-wrapper");
+            document.querySelector("#button").addEventListener("click", () => {
+                pop.style.display = "block";
+            });
+
+            var classNames = ["popup-close", "popup-link", "popup-wrapper"];
+            pop.addEventListener("click", event => {
+                var classNameOfClickedElement = event.target.classList[0]
+                var shouldClosePopup = classNames.some(className => className === classNameOfClickedElement)
+                if (shouldClosePopup) {
+                    pop.style.display = "none";
+                };
+            });
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel</title>
+    <style>
+        @charset "UTF-8";
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            background-color: #000;
+        }
+
+        #items-wrapper {
+            width: 100vw;
+        }
+
+        #items {
+            display: flex;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+        }
+
+        .item {
+            flex: none;
+            width: 100%;
+            height: 400px;
+            scroll-snap-align: start;
+            pointer-events: none;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div id="items-wrapper">
+        <div id="items">
+            <div class="item"><img src="images/1.jpg"></div>
+            <div class="item"><img src="images/2.jpg"></div>
+            <div class="item"><img src="images/3.jpg"></div>
+            <div class="item"><img src="images/4.jpg"></div>
+        </div>
+    </div>
+
+    <script>
+        var loop = 0
+        document.querySelector("#items").addEventListener("wheel", event => {
+            if (event.deltaY < 0) {
+                event.target.scrollBy(300, 0)
+            } else {
+                event.target.scrollBy(-300, 0)
+            }
+        })
+    </script>
+</body>
+</html>
